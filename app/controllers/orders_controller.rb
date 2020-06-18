@@ -13,6 +13,7 @@ class OrdersController < ApplicationController
   def create
     @order.customer_id = current_user.id
     @order.save
+    redirect_to orders_complete_path
   end
 
   def confirm
