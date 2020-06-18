@@ -1,2 +1,14 @@
-<h1>Orders#new</h1>
-<p>Find me in app/views/orders/new.html.erb</p>
+<h1>購入情報入力</h1>
+
+<div>
+  支払い方法
+  <%= form_for %>
+   <label><%=f.radio_button :payment_method, "クレジットカード" %>クレジットカード</label>
+   <label><%=f.radio_button :payment_method, "銀行振込" %>銀行振込</label>
+  <% end %>
+</div>
+
+<div>
+  お届け先
+
+</div>

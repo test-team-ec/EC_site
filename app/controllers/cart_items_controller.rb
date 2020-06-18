@@ -29,9 +29,11 @@ class CartItemsController < ApplicationController
 
   def destroy
     @cart_item = CartItem.find(params[:id])
-    @cart_item.destoroy
-    ridirect_to cart_items_confirm_path
+    @cart_item.destroy
+    rdirect_to cart_items_confirm_path
   end
+
+
 
   private
 	def cart_item
@@ -44,5 +46,7 @@ class CartItemsController < ApplicationController
 			cart_item
 	end
 
-
+  def cart_item_params
+  	params.require(:cart_item).permit(:count)
+  end
 end

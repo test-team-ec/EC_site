@@ -6,14 +6,25 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @order = Order.new
+    @order.customer_id = current_user.id
   end
 
   def create
+    @order.customer_id = current_user.id
+    @order.save
   end
 
   def confirm
+    @order = Order.where(customer_id: current_user.id)
+    @order = Oreder.all
   end
 
   def complete
+  end
+
+  private
+  def order_params
+  	params.require(:order).permit(:postcode, :address, :name)
   end
 end

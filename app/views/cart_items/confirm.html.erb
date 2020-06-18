@@ -1,15 +1,23 @@
 <h1>ショッピングカート</h1>
 
   <% @cart_item.each do |cart_item| %>
-   <td><%= cart_item.products.name %>
+    <td>
+      <%= cart_item.products.name %>
       <%= cart_item.products.price %>
       <%= cart_item.products.price %>
       <%= link_to “削除”, cart_items_confirm_path(@cart_item, product), method: :delete %>
-      <%= attachment_image_tag(@product, :image, :fill, 100, 100, fallback: "no-image-mini.jpg") %><
-      <% end %>
+      <%= attachment_image_tag(@product, :image, :fill, 100, 100, fallback: "no-image-mini.jpg") %>
     </td>
+  <% end %>
 
  <div><%= link_to "買い物を続ける", root_path %></div>
  <div><%= link_to “購入情報”, root_path %></div>
  <%= link_to "カート空にする", cart_items_destroy_all_path(@cart_item), method: :delete, class:"btn-sm btn-danger"%>
 <div><%= @total_price %>商品合計</div>
+<div>
+  <%= form_for(@cart_item) do |f| %>
+		<%= f.label :count %>
+		<%= f.text_field :count %>
+		<%= f.submit "更新" %>
+</div>
+  <% end %>
