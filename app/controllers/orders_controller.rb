@@ -19,6 +19,5 @@ class OrdersController < ApplicationController
   def complete
   end
 
-  
 end
 

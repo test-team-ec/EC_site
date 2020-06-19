@@ -1,2 +1,18 @@
-<h1>Shippings#index</h1>
-<p>Find me in app/views/shippings/index.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+<h3 style="background-color: silver">配送先登録/一覧</h3>
+</div>
+</div>
+<%= form_for(@shipping) do |f| %>
+ 	<% if @shipping.errors.any? %>
+        <%= @shipping.errors.count %>
+        <% @shipping.errors.full_messages.each do |message| %>
+            <%= message %>
+        <% end %>
+    <% end %>
+
+    <% end %>
+
+
+
