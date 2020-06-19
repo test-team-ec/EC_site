@@ -1,3 +1,36 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-image{
+	background-image: url(top_page.jpg);
+	background-size: cover;
+	width: 80%;
+	height: 350px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-text{
+	font-size:18px;
+	color: black;
+	background: rgba(white,0.5)
+}
+
+.products{
+	background-color: blue;
+	width: 100%;
+	display: flex;
+}
+
+.product{
+	background-color: green;
+	width: 21%;
+	margin: 0 2%;
+}
+
+.product-image{
+	background-color: red;
+	height: 100px;
+}
