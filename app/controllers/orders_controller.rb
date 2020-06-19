@@ -8,9 +8,13 @@ class OrdersController < ApplicationController
   end
 
   def new
+    @order = Order.new
+    @order = Order.find(order_params)
   end
 
   def create
+    @order = current_user
+    @order.save
   end
 
   def confirm
@@ -19,6 +23,10 @@ class OrdersController < ApplicationController
   def complete
   end
 
-  
-end
+  private
 
+    def order_params
+     @order = Proposal.new(params.require(:order).permit(:name, :adrres, :postcode, :total_products_cost, :payment_method)
+    end
+
+end
