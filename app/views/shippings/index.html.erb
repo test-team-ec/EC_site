@@ -24,16 +24,17 @@
 			<td><%= shipping.address %></td>
 			<td><%= shipping.name %></td>
 			<td>
-				<%= link_to "編集する",edit_customers_shipping_path(@shipping), class: "btn-sm btn-success" %>
+				<%= link_to "編集する",edit_customers_shipping_path(shipping), class: "btn-sm btn-success" %>
 
 
-				<%= link_to "削除する",customers_shipping_path(@shipping), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+				<%= link_to "削除する",customers_shipping_path(shipping), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
 			</td>
 		</tr>
 		<% end %>
 	</tbody>
 </table>
 </div>
+
 
 
 

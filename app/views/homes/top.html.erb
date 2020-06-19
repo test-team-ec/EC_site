@@ -1,2 +1,82 @@
 <h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<% if customer_signed_in? %>
+	<%= link_to "作業用ログアウト",
+		destroy_customer_session_path, method: :delete%>
+<p>ログイン中ユーザー</p>
+<p>id：<%= current_customer.id %>名前：<%= current_customer.first_name %></p>
+<% end %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-2", style="background-color: white">
+			<div class="genre_index", style="border:1px solid black;">
+				<p style="border-bottom:1px solid black;text-align: center;font-weight: bold">
+					ジャンル検索
+				</p>
+				<p>以下ジャンル一覧をeach do で表示</p>
+				<!--以下予定している構文コメントアウト
+					@genres.each do |genre|
+					 genre.name
+					end
+				-->
+				<p>仮：ケーキ</p>
+				<p>仮：焼き菓子</p>
+				<p>仮：プリン</p>
+				<p>仮：キャンディ</p>
+			</div>
+		</div>
+		<div class="col-lg-10">
+			<div class="top-image">
+				<div class="top-text">
+					<p>
+						ようこそ、NaganoCakeへ！<br>
+						このサイトは、ケーキ販売のECサイトになります。<br>
+						会員でない方も商品の閲覧はできますが、<br>
+						購入には会員登録が必要になります。
+					</p>
+				</div>
+			</div>
+			<h3 style="padding: 30px 0;">オススメ商品</h3>
+			<p>オススメ商品each.doで表示</p>
+			<div class="products">
+				<!-- 以下予定の構文
+					products.shuffle.first(4).each do |product|
+				 -->
+				<div class="product">
+					<div class="product-image">
+						<p>商品画像1</p>
+					</div>
+					<p>商品名</p>
+					<p>商品価格</p>
+				</div>
+
+				<div class="product">
+					<div class="product-image">
+						<p>商品画像2</p>
+					</div>
+					<p>商品名</p>
+					<p>商品価格</p>
+				</div>
+
+				<div class="product">
+					<div class="product-image">
+						<p>商品画像3</p>
+					</div>
+					<p>商品名</p>
+					<p>商品価格</p>
+				</div>
+
+				<div class="product">
+					<div class="product-image">
+						<p>商品画像4</p>
+					</div>
+					<p>商品名</p>
+					<p>商品価格</p>
+				</div>
+			</div>
+			<a href="/products", style="float: right; padding: 10px 0;">
+				もっと見る>
+			</a>
+		</div>
+	</div>
+</div>

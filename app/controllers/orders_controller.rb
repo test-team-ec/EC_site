@@ -23,13 +23,13 @@ class OrdersController < ApplicationController
   def complete
   end
 
-<<<<<<< HEAD
-=======
+
+
   private
 
     def order_params
      @order = Proposal.new(params.require(:order).permit(:name, :adrres, :postcode, :total_products_cost, :payment_method)
     end
->>>>>>> 1929697bc17ab8217653a61f8ff32a449581a18e
+
 
 end
