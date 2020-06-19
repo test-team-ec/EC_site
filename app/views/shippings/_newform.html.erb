@@ -1,0 +1,43 @@
+
+<%= form_for(shipping, url:  customers_shippings_path) do |f| %>
+ 	<% if shipping.errors.any? %>
+        <h3><%= shipping.errors.count %>eroor</h3>
+        <ul>
+        <% shipping.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+             <% end %>
+        </ul>
+    <% end %>
+
+	<div class="row">
+      <div class="col-lg-4">
+        <p>郵便番号(ハイフンなし)</p>
+      </div>
+      <div class="col-lg-3">
+         <%= f.text_field :postcode, autocomplete: "off"%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <p>住所</p>
+      </div>
+      <div class="col-lg-5">
+         <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <p>宛名</p>
+      </div>
+      <div class="col-lg-5">
+         <%= f.text_field :name, autocomplete: "off" %>
+         <p style="float: right">
+         <%= f.submit "登録する", class:"btn btn-success" %>
+     	</p>
+      </div>
+    </div>
+
+
+    <% end %>
