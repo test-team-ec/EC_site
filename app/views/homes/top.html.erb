@@ -1,2 +1,39 @@
 <h1>Home#top</h1>
-<p>Find me in app/views/home/top.html.erb</p>
+<p><%= current_customer.email %></p>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-2", style="background-color: white">
+			<div class="genre_index", style="border:1px solid black;text-align: center">
+				<p style="border-bottom:1px solid black;">ジャンル一覧</p>
+				<p>以下ジャンル一覧をeach do で表示</p>
+				<!--以下予定している構文コメントアウト
+					@genres.each do |genre|
+					 genre.name
+					end
+				-->
+				<p>仮：ケーキ</p>
+				<p>仮：焼き菓子</p>
+				<p>仮：プリン</p>
+				<p>仮：キャンディ</p>
+			</div>
+		</div>
+		<div class="col-lg-10", style="background-color: white">
+			<div class="top-image", style="width: 80%; height: 350px;background-color: orange">
+				<p>ここにTOP画像と紹介の文字が入ります</p>
+			</div>
+			<h3 style="padding: 30px 0;">オススメ商品</h3>
+			<div class="products-index" style="background-color: blue; width: 100%">
+				<!-- .each do で商品一覧表示予定。イメージで1つだけ表示中 -->
+				<div class="product" style="background-color: green; width: 20%">
+					<div class="product-image", style="background-color: red;
+						height: 100px">
+					</div>
+					<p>商品名</p>
+					<p>商品価格</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
