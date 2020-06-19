@@ -1,15 +1,22 @@
 class ShippingsController < ApplicationController
   def index
       @shippings = Shipping.all
-      @Shipping = Shipping.new
+      @shipping = Shipping.new
   end
 
-  def craete
+  def new
+  end
+
+  def create
       @shipping = Shipping.new(shipping_params)
-      @shipping.user_id = current_user.user_id
-  if @shipping.save
-     redirect_to customers_shippings_path(@shipping)
-     
+      @shipping.customer_id = current_customer.id
+    
+      if  @shipping.save
+          redirect_to customers_shippings_path
+      else
+          @shippings = Shipping.all
+          render 'index'
+      end
   end
 
 
@@ -17,15 +24,16 @@ class ShippingsController < ApplicationController
   end
 
   def edit
+       @shipping = Shipping.find(params[:id])
   end
 
   def update
   end
 
-  def new
-  end
-
   def destroy
+      @shipping = Shipping.find(params[:id])
+      @shipping.destroy
+      redirect_to customers_shippings_path
   end
 
   private
@@ -34,4 +42,6 @@ class ShippingsController < ApplicationController
     params.require(:shipping).permit(:postcode, :address, :name)
   end
 end
+
+
 

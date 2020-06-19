@@ -1,18 +1,41 @@
 <div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-<h3 style="background-color: silver">配送先登録/一覧</h3>
+<div class="row">
+	<div class="col-lg-3">
+<h3 style="background-color: #EEEEEE; margin-top:50px;">配送先登録/一覧</h3>
 </div>
 </div>
-<%= form_for(@shipping) do |f| %>
- 	<% if @shipping.errors.any? %>
-        <%= @shipping.errors.count %>
-        <% @shipping.errors.full_messages.each do |message| %>
-            <%= message %>
-        <% end %>
-    <% end %>
 
-    <% end %>
+<%= render 'shippings/newform',shipping:@shipping %>
+
+	<div class="row">
+<table class="table table-bordered">
+	<thead class="thead-light">
+		<tr>
+			<th class="col-xs-2">郵便番号</th>
+			<th class="col-xs-4">住所</th>
+			<th class="col-xs-2">宛名</th>
+			<th class="col-xs-4"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @shippings.each do |shipping| %>
+		<tr>
+			<td><%= shipping.postcode %></td>
+			<td><%= shipping.address %></td>
+			<td><%= shipping.name %></td>
+			<td>
+				<%= link_to "編集する",edit_customers_shipping_path(@shipping), class: "btn-sm btn-success" %>
+
+
+				<%= link_to "削除する",customers_shipping_path(@shipping), method: :delete, data: {confirm: "本当に削除してもよろしいですか？"}, class: "btn-sm btn-danger" %>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
+
+
 
 
 

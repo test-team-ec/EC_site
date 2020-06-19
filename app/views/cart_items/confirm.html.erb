@@ -1,2 +1,33 @@
-<h1>CartItems#confirm</h1>
-<p>Find me in app/views/cart_items/confirm.html.erb</p>
+<h1>ショッピングカート</h1>
+<h2>カートに追加された商品</h2>
+<br>
+<%= button_to 'カートを空にする', @cart, method: :delete, class: 'fbtn' %>
+<br>
+<table>
+	<tr>
+		<th></th>
+		<th>商品名</th>
+		<th>単価</th>
+		<th>数量</th>
+		<th>小計</th>
+		<th></th>
+
+	</tr>
+		<% @cart_items.product.each do |product| %>
+		<tr>
+			<td></td>
+			<td><%= cart_item.product.neme %></td>
+			<td><%= (cart_item.product.price).to_i %>円</td>
+			<td><%= cart_item.count %></td>
+			<td><%= (cart_item.total_price).to_i %>円</td>
+			<td><%= button_to '削除', item, method: :delete %></td>
+		</tr>
+		<% end %>
+
+		<tr>
+			<td>合計：<%= (@cart_item.total_price).to_i %>円</td>
+		</tr>
+
+</table>
+<br>
+<span>  </span><%= link_to '買い物を続ける', market_path, :class => 'btn' %><span>
