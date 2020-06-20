@@ -14,11 +14,11 @@ Rails.application.routes.draw do
   get 'orders/confirm' => "orders#confirm"
   get 'orders/complete' => "orders#complete"
 
-  get "/" => "homes#top"
+  get "/" => "homes#top", as: "home"
   get "home_about" => "homes#about"
 
 
-  resource :customers,only:[:show,:edit,:update,:desteoy] do
+  resource :customers,only:[:show,:edit,:update, :destroy] do
     resources :shippings
     resources :orders ,only:[:index, :show, :new, :create]
       namespace :admin do
