@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :customers, through: :cart_items, source: :customer
+  attachment :image_id
 
   def add_product(product_id)
 

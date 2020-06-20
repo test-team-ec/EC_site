@@ -1,2 +1,45 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-2">
+			<div class="genre_index", style="border:1px solid black;">
+				<p style="border-bottom:1px solid black;text-align: center;font-weight: bold">
+					ジャンル検索
+				</p>
+				<p>以下ジャンル一覧をeach do で表示</p>
+				<!--以下予定している構文コメントアウト
+					@genres.each do |genre|
+					 genre.name
+					end
+				-->
+				<p>仮：ケーキ</p>
+				<p>仮：焼き菓子</p>
+				<p>仮：プリン</p>
+				<p>仮：キャンディ</p>
+			</div>
+		</div>
+		<div class="col-lg-5">
+			<%= attachment_image_tag @product, :image, format:"jpg",
+				size:"200x150" %>
+		</div>
+		<div class="col-lg-5">
+			<p><%= @product.name %></p>
+			<p><%= @product.introduction %></p>
+			<p><%= @product.price %> * 1.08</p>
+			<div style="float: right">
+				<%= form_for(@cart_item) do |f| %>
+				<!-- 現状cart_item側のcreateが出来てないからエラーが起きてる -->
+					<div class="field">
+						<%= f.select :count, [["1","1"],["2","2"],["3","3"]],
+								include_blank: "個数", placeholder:"個数選択" %>
+					</div>
+					<div class="field">
+						<%= f.hidden_field_tag :product_id, :value => @product.id %>
+					</div>
+					<div class="action">
+						<%= f.submit "カートに入れる", class:"btn btn-primary" %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
