@@ -1,0 +1,35 @@
+<h1>商品編集</h1>
+<%= form_with(model: product, method: :post, local: true) do |form| %>
+<%= attachment_image_tag(product, :product_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+<div class="field">
+	<%= f.label :image %>
+	<%= f.attachment_field :product_image, class: "product_image" %>
+</div>
+
+<div class="field">
+  <%= f.label :商品名 %>
+  <%= f.text_field :name %>
+</div>
+
+<div class="field">
+  <%= f.label :商品説明 %>
+  <%= f.text_field :introduction %>
+</div>
+
+<div class="field">
+  <%= f.label :ジャンル %>
+  <%= f.collection_select product, :genre_id, Genre.all, :id, :name %>
+</div>
+
+<div class="field">
+  <%= f.label :税込価格 %>
+  <%= f.text_field :price %>
+
+</div>
+
+<div class="field">
+  <%= f.label : %>
+  <%= f.collection_select product, :is_active, product :is_active, :is_active %>
+</div>
+<%= f.submit '保存' %>
+<% end %>
