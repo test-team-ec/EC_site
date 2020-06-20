@@ -1,0 +1,28 @@
+<h1>商品詳細</h1>
+<%= attachment_image_tag(product, :product_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+<div>
+  商品名
+  <%= @product.name %>
+</div>
+
+<div>
+  商品説明
+  <%= @product.introduction %>
+</div>
+
+<div>
+  ジャンル
+  <%= @product.genre_id %>
+</div>
+
+<div>
+  税込価格
+  <%= @product.price %>
+</div>
+
+<div>
+  販売ステータス
+  <%= @product.is_active %>
+</div>
+
+<%= link_to "編集する",edit_admin_product(@product), class: "btn-sm btn-success edit_product_#{@product.id}" %>
