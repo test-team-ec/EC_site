@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :admins
   devise_for :customers
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :admins
+
+
+
 
   get 'cart_items/confirm' =>"cart_items#confirm"
   get 'cart_items/destroy_all' =>"cart_items#destroy_all"
