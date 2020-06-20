@@ -1,0 +1,86 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+<h4 style="background-color: #EEEEEE; margin-top:50px;">商品新規登録</h4>
+</div>
+</div>
+<%= form_for(@product, url:admin_products_path) do |f| %>
+<% if @product.errors.any? %>
+        <h3><%= @product.errors.count %>eroor</h3>
+        <ul>
+        <% @product.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+             <% end %>
+        </ul>
+    <% end %>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <p>商品名</p>
+      </div>
+      <div class="col-lg-3">
+         <%= f.text_field :name, autocomplete: "off"%>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <p>商品説明</p>
+      </div>
+      <div class="col-lg-5">
+         <%= f.text_field :introduction, autocomplete: "off" ,style:"width:100%" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <p>ジャンル</p>
+      </div>
+      <div class="col-lg-5">
+      	<div class="input-group">
+	<input type="text" class="form-control" placeholder="-- 選択してください --">
+	<span class="input-group-btn">
+		<button type="button" class="btn btn- dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li><a href="#">リンクのリスト１</a></li>
+			<li><a href="#">リンクのリスト２</a></li>
+			<li><a href="#">リンクのリスト３</a></li>
+		</ul>
+	</span>
+</div>
+      </div>
+  </div>
+
+      <div class="row">
+      <div class="col-lg-4">
+        <p>税込価格</p>
+      </div>
+      <div class="col-lg-5">
+         <%= f.text_field :price, autocomplete: "off" ,style:"width:100%" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4">
+        <p>販売<br>ステータス</p>
+      </div>
+      <div class="col-lg-5">
+      	<div class="input-group">
+	<input type="text" class="form-control" placeholder="-- 選択してください --">
+	<span class="input-group-btn">
+		<button type="button" class="btn btn- dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			<span class="caret"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu">
+			<li>リンクのリスト１</a></li>
+			<li><a href="#">リンクのリスト２</a></li>
+			<li><a href="#">リンクのリスト３</a></li>
+		</ul>
+	</span>
+</div>
+      </div>
+  </div>
+
+    <% end %>
