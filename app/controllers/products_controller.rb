@@ -8,6 +8,7 @@ class ProductsController < ApplicationController
   	@genres = Genre.all
   	@product = Product.find(params[:id])
   	@cart_item = CartItem.new
+  	@tax_price = (@product.price * 1.08).to_i
   end
 
 end

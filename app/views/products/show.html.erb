@@ -18,28 +18,26 @@
 			</div>
 		</div>
 		<div class="col-lg-5">
-			<%= attachment_image_tag @product, :image, format:"jpg",
-				size:"200x150" %>
+			<%= attachment_image_tag @product, :product_image, format:"jpg",
+				fallback:"top_page.jpg", class:"product-image" %>
 		</div>
 		<div class="col-lg-5">
 			<p><%= @product.name %></p>
 			<p><%= @product.introduction %></p>
-			<p><%= @product.price %> * 1.08</p>
+			<p><%= @tax_price %>円</p>
+
 			<div style="float: right">
-				<%= form_for(@cart_item) do |f| %>
+				<%= form_for(@cart_item, url: customers_cart_items_path) do |f| %>
 				<!-- 現状cart_item側のcreateが出来てないからエラーが起きてる -->
 					<div class="field">
 						<%= f.select :count, [["1","1"],["2","2"],["3","3"]],
 								include_blank: "個数", placeholder:"個数選択" %>
-					</div>
-					<div class="field">
-						<%= f.hidden_field_tag :product_id, :value => @product.id %>
-					</div>
-					<div class="action">
+						<%= f.hidden_field :product_id, :value => @product.id %>
 						<%= f.submit "カートに入れる", class:"btn btn-primary" %>
 					</div>
 				<% end %>
 			</div>
+
 		</div>
 	</div>
 </div>
