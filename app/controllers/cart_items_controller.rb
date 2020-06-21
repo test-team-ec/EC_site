@@ -1,7 +1,6 @@
 class CartItemsController < ApplicationController
   def confirm
-    @cart_item = CartItem.all
-   end
+    @cart_items = CartItem.all
   end
 
   def update
@@ -9,10 +8,10 @@ class CartItemsController < ApplicationController
   end
 
   def create
-    @cart_item = current_cart_item
-	  product = Product.find(params[:product_id])
-	  @cart_item = @cart_item.add_product(product.id)
+    @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
     @cart_item.save
+    redirect_to cart_items_confirm_path
   end
 
   def destroy_all
@@ -40,6 +39,6 @@ class CartItemsController < ApplicationController
 	end
 
   def cart_item_params
-  	params.require(:cart_item).permit(:count)
+  	params.require(:cart_item).permit(:customer_id, :product_id, :count)
   end
 end
