@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @order_adress = OrderAress.new(order_adress_params)
+    @order_address = OrderAddress.new(order_address_params)
   end
 
   def create
@@ -27,7 +27,7 @@ class OrdersController < ApplicationController
   def confirm
     @order  = current_customer.order.find(params[:customer_id])
     @payment = PaymentMethod.find(params[:payment_method])
-    @address = AdrresOption.find(params[:adress])
+    @address = AdrressOption.find(params[:address])
     @order.save
     redirect_to root_path
   end
@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
   private
 
     def order_adress_params
-     @order_adress = OrderAress.new(params.require(:order).permit(:adrres, :postcode, :payment_method, :name))
+     @order_address = OrderAress.new(params.require(:order).permit(:address, :postcode, :payment_method, :name))
     end
 
 
