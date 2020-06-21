@@ -1,6 +1,13 @@
 class ProductsController < ApplicationController
   def index
-  	@products = Product.all
+    if params[:genre_id]
+      @genre = Genre.find(params[:genre_id])
+      @products = Product.where(genre_id: @genre.id)
+      @index_title = @genre.name
+    else
+      @products = Product.all
+      @index_title = "商品"
+    end
   	@genres = Genre.all
   end
 
@@ -10,5 +17,4 @@ class ProductsController < ApplicationController
   	@cart_item = CartItem.new
   	@tax_price = (@product.price * 1.08).to_i
   end
-
 end

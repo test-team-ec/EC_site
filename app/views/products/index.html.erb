@@ -1,24 +1,9 @@
-<div class="container">
+<div class="container", style="padding: 30px 0">
 	<div class="row">
-		<div class="col-lg-2">
-			<div class="genre_index", style="border:1px solid black;">
-				<p style="border-bottom:1px solid black;text-align: center;font-weight: bold">
-					ジャンル検索
-				</p>
-				<p>以下ジャンル一覧をeach do で表示</p>
-				<!--以下予定している構文コメントアウト
-					@genres.each do |genre|
-					 genre.name
-					end
-				-->
-				<p>仮：ケーキ</p>
-				<p>仮：焼き菓子</p>
-				<p>仮：プリン</p>
-				<p>仮：キャンディ</p>
-			</div>
-		</div>
+		<%= render "products/genre_sidebar", genres: @genres %>
 		<div class="col-lg-10">
-			<h3 style="padding-bottom: : 30px">商品一覧
+			<h3 style="padding-bottom: : 30px">
+				<%= @index_title %>一覧
 				<span style="font-size: 15px">
 					(全<%= @products.count %>件)
 				</span>
@@ -32,7 +17,7 @@
 									fallback:"top_page.jpg", class:"product-image" %>
 							<% end %>
 							<p><%= product.name %></p>
-							<p><%= product.price %>円</p>
+							<p>￥<%= product.price %>円</p>
 						</div>
 					</div>
 				<% end %>
