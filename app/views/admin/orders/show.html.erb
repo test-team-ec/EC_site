@@ -31,14 +31,21 @@
 			<p style="font-weight: bold">注文ステータス</p>
 		</div>
 		<div class="col-lg-9">
-			<p>注文ステータス</p>
+			<p>
+				<%= form_for(@order,url: admin_order_path(@order),
+					html: {method: "patch"}) do |f| %>
+					<%= f.select :order_status, Order.order_statuses.keys,
+						include_blank: true %>
+					<%= f.submit "更新", class:"btn btn-primary" %>
+				<% end %>
+			</p>
 		</div>
 	</div>
 
 	<div class=row>
 		<div class="col-lg-8">
 			<table class="table">
-				<thead>
+				<thead class="thead-light">
 					<tr>
 						<th>商品名</th>
 						<th>単価(税込)</th>
@@ -50,16 +57,23 @@
 				</thead>
 				<% @sum = 0 %>
 				<% @order_details.each do |order_detail| %>
-				<tr>
-					<td><%= order_detail.product.name %></td>
-					<td><%= (order_detail.product.price * 1.1).to_i %></td>
-					<td><%= order_detail.count %></td>
-					<td><%= (order_detail.product.price * 1.1 * order_detail.count).to_i %>
-						<% @sum += (order_detail.product.price * 1.1 * order_detail.count) %>
-					</td>
-					<td>ステータス</td>
-					<td>更新ボタン</td>
-				</tr>
+					<tr>
+						<td><%= order_detail.product.name %></td>
+						<td><%= (order_detail.product.price * 1.1).to_i %></td>
+						<td><%= order_detail.count %></td>
+						<td><%= (order_detail.product.price * 1.1 * order_detail.count).to_i %>
+							<% @sum += (order_detail.product.price * 1.1 * order_detail.count) %>
+						</td>
+						<td>
+							<%= form_for(order_detail ,
+								url: admin_order_detail_path(order_detail),
+								html: {method: "patch"}) do |f| %>
+								<%= f.select :work_status, OrderDetail.work_statuses.keys,
+										include_blank: true %>
+								<%= f.submit "更新", class:"btn btn-primary" %>
+							<% end %>
+						</td>
+					</tr>
 				<% end %>
 			</table>
 		</div>
@@ -72,9 +86,9 @@
 					<p>請求金額合計</p>
 				</div>
 				<div class="col-lg-5">
-					<p><%= @sum.to_i %></p>
-					<p><%= @order.postage %>
-					<p><%= @order.total_products_cost + @order.postage %>
+					<p><%= @sum.to_i %>円</p>
+					<p><%= @order.postage %>円</p>
+					<p><%= @order.total_products_cost + @order.postage %>円</p>
 				</div>
 			</div>
 		</div>

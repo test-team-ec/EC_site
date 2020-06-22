@@ -23,8 +23,9 @@ Shipping.create(customer_id: 1, name:"test", postcode:"1234567", address:"大阪
 
 
 Order.create(customer_id: 1, name:"test", postcode: "1234567", address:"東京都",
-	postage: 800, total_products_cost: 220, payment_method:"", order_status:"")
+	postage: 800, total_products_cost: 330, payment_method:"", order_status: 0)
 
-OrderDetail.create(product_id: 1, order_id: 1, count: 1, price: 220, work_status:"" )
+OrderDetail.create(product_id: 1, order_id: 1, count: 1, price: 220, work_status: 0 )
+OrderDetail.create(product_id: 2, order_id: 1, count: 1, price: 110, work_status: 0 )
 
 Administer.create(email: "admin@admin",password: "adminadmin")
