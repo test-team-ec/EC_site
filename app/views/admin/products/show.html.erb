@@ -1,5 +1,5 @@
 <h1>商品詳細</h1>
-<%= attachment_image_tag(product, :product_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+<%= attachment_image_tag @product, :product_image, :fill, 50, 50, fallback: "top_page.jpg" %>
 <div>
   商品名
   <%= @product.name %>
@@ -25,4 +25,3 @@
   <%= @product.is_active %>
 </div>
 
-<%= link_to "編集する",edit_admin_product(@product), class: "btn-sm btn-success edit_product_#{@product.id}" %>
