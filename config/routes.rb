@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/" => "homes#top", as: "home"
   get "home_about" => "homes#about"
 
+  get "customers/delete" => "customers#delete", as:"customers_delete"
+
   resource :customers,only:[:show,:edit,:update, :destroy] do
     resources :shippings
     resources :orders ,only:[:index, :show, :new, :create]

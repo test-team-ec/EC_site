@@ -16,7 +16,7 @@ Genre.create(name: "焼き菓子", is_active:"true")
 
 Customer.create(first_name: "test", last_name: "test", first_name_phonetic: "test",
 	last_name_phonetic: "test", tel:"1234567890", postcode: "1234567", address:"東京都",
-	email:"test@test", password:"testtest", is_active:"true" )
+	email:"test@test", password:"testtest", is_active:"有効" )
 
 Shipping.create(customer_id: 1, name:"test", postcode:"1234567", address:"大阪府")
 
