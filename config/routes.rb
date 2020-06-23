@@ -8,7 +8,15 @@ Rails.application.routes.draw do
   end
 
 
-  devise_for :customers
+  devise_for :customers, skip: :all
+  devise_scope :customer do
+    get 'customers/sign_up' => 'customers/registrations#new'
+    post 'customers/sign_up' => 'customers/registrations#create'
+    delete 'customers/sign_out' => 'customers/sessions#destroy', as: 'destroy_customer_session'
+    get 'customers/sign_in' => 'customers/sessions#new'
+    get 'customers/sign_in' => 'customers/sessions#create'
+  end
+
 
   get 'cart_items/confirm' =>"cart_items#confirm"
   get 'cart_items/destroy_all' =>"cart_items#destroy_all"
