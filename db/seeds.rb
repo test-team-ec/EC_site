@@ -20,4 +20,12 @@ Customer.create(first_name: "test", last_name: "test", first_name_phonetic: "tes
 
 Shipping.create(customer_id: 1, name:"test", postcode:"1234567", address:"大阪府")
 
-Admin.create(email: "admin@admin", password: "adminadmin")
+
+
+Order.create(customer_id: 1, name:"test", postcode: "1234567", address:"東京都",
+	postage: 800, total_products_cost: 330, payment_method:"", order_status: 0)
+
+OrderDetail.create(product_id: 1, order_id: 1, count: 1, price: 220, work_status: 0 )
+OrderDetail.create(product_id: 2, order_id: 1, count: 1, price: 110, work_status: 0 )
+
+Administer.create(email: "admin@admin",password: "adminadmin")
