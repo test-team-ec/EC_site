@@ -9,23 +9,27 @@ class Admin::ProductsController < ApplicationController
 	end
 
 	def edit
-		@product = Product.find(prams[:id])
+		@product = Product.find(params[:id])
 	end
 
 	def update
-		@product = Product.find(prams[:id])
+		@product = Product.find(params[:id])
 		@product.update(product_params)
+		 redirect_to root_path
 	end
 
 	def new
 		@product = Product.new
-		
+
 	end
 
 	def create
 		@product = Product.new(product_params)
-		@product.save
-		redirect_to admin_product_path(@product)
+		if @product.save
+		 redirect_to admin_products_path(@product)
+	 else
+		 render "edit"
+	 end
 	end
 
 	private
