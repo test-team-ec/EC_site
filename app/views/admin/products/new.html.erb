@@ -55,7 +55,7 @@
         <p>販売<br>ステータス</p>
       </div>
       <div class="col-lg-5">
-          <%= f.select :is_active,[["販売中",true],["販売停止中",false]], include_blank: "選択して下さい" %>
+          <%= f.select :is_active, Product.is_actives.keys %>
       </div>
     </div>
 
