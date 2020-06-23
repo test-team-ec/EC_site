@@ -8,11 +8,11 @@ class ProductsController < ApplicationController
       @products = Product.all
       @index_title = "商品"
     end
-  	@genres = Genre.all
+  	@genres = Genre.where(is_active: "有効")
   end
 
   def show
-  	@genres = Genre.all
+  	@genres = Genre.where(is_active: "有効")
   	@product = Product.find(params[:id])
   	@cart_item = CartItem.new
   	@tax_price = (@product.price * 1.08).to_i
