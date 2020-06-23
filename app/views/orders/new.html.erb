@@ -2,37 +2,42 @@
 
 <%= form_with(url:orders_confirm_path, local: true) do |form| %>
 <h1>支払方法</h1>
- <label><%= f.radio_button :payment_method, "クレジットカード" %> クレジットカード</label>
- <label><%= f.radio_button :payment_method, "銀行振込" %> 銀行振込</label>
+ <label><%= form.radio_button :payment_method, :true %> クレジットカード</label>
+ <label><%= form.radio_button :payment_method, :false %> 銀行振込</label>
 <br>
     <!--  現住所 -->
   <div class="field">
-   <label><%= f.radio_button :address_option, customer.address %> ご自身の住所</label>
-        <%= @customer.address %>
+   <label><%= form.radio_button  :addresses ,"1" %>ご自身の住所</label>
+          <%= @customer.address %>
+
   </div>
     <!-- セレクトボックス  -->
   <div class="field">
-   <label><%= f.radio_button :address_option, current_customer.shipping.address %> 登録済住所から選択</label>
-          <%= f.collection_select customer, :address, customers :address, :address %>
+   <label> <%= form.radio_button :addresses , "2" %> 登録済住所から選択</label>
+           <%= form.collection_select(:select_address, @customer_address, :id, :view_shipping) %>
+
   </div>
    <!-- 郵便番号フォーム -->
   <div class="field">
-    <%= f.radio_button :address_option, order_adress.new %>
-    <%= f.label :郵便番号 %>
-    <%= f.text_field :postcode %>
+    <lebel>
+      <%= form.radio_button  :addresses ,"3" %>
+      新しいお届け先
+    </lebel>
+    <%= form.label :郵便番号 %>
+    <%= form.text_field :postcode %>
   </div>
   <!-- 住所フォーム -->
   <div class="field">
-    <%= f.label :住所 %>
-    <%= f.text_area :address %>
+    <%= form.label :住所 %>
+    <%= form.text_area :address %>
   </div>
   <!-- 宛名フォーム -->
   <div class="field">
-    <%= f.label :宛名 %>
-    <%= f.text_field :name %>
+    <%= form.label :宛名 %>
+    <%= form.text_field :name %>
   </div>
 <br>
   <div class="actions">
-    <%= f.submit '確認画面' %>
+    <%= form.submit '確認画面' %>
   </div>
 <% end %>

@@ -1,43 +1,32 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h1>会員情報編集</h1>
+<%= form_for(@customer, url: customers_path) do|f| %>
+<h4>会員ID</h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<h4>氏名</h4>
+<%= f.text_field :first_name %>
+<%= f.text_field :last_name %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<h4>フリガナ</h4>
+<%= f.text_field :first_name_phonetic %>
+<%= f.text_field :last_name_phonetic %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+<h4>メールアドレス</h4>
+<%= f.email_field :email %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
+<h4>郵便番号</h4>
+<%= f.number_field :postcode %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+<h4>住所</h4>
+<%= f.text_area :address %>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+<h4>電話番号</h4>
+<%= f.telephone_field :tel %>
+
+<%= f.submit '編集内容変更を保存する' %>
+
+
+
+
+
 <% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>

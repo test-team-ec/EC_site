@@ -1,3 +1,53 @@
+<p>
+	登録情報
+    <%= link_to "編集する", edit_customers_path %>
+    パスワード変更
+</p>
+
+<table>
+<tr>
+	<th><h4>氏名</h4></th>
+	<th><p><%= @customer.first_name %></p></th>
+	<th><p><%= @customer.last_name %></p></th>
+</tr>
+<tr>
+	<th><h4>フリガナ</h4></th>
+	<th><p><%= @customer.first_name_phonetic %></p></th>
+	<th><p><%= @customer.last_name_phonetic %></p></th>
+</tr>
+
+<tr>
+	<th><h4>メールアドレス</h4></th>
+	<th><p><%= @customer.email %></p></th>
+</tr>
+
+<tr>
+	<th><h4>郵便番号</h4></th>
+	<th><p><%= @customer.postcode %></p></th>
+</tr>
+
+<tr>
+	<th><h4>電話番号</h4></th>
+	<th><p><%= @customer.tel %></p></th>
+</tr>
+</table>
+
+<p>
+	配送先
+    <%= link_to "一覧を見る", customers_shippings_path %>
+</p>
+
+<p>
+	注文履歴
+	<%= link_to "一覧を見る",customers_orders_path %>
+
+
+
+</p>
+
+
+=======
 <h1>Customers#show</h1>
 <p>Find me in app/views/customers/show.html.erb</p>
 <%= link_to edit_customers_path(current_customer) "編集", method: :get %>
+>>>>>>> 560b7d43d0f43459558bd8ad52bdcad35b688f61

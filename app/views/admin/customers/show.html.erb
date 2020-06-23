@@ -1,0 +1,41 @@
+<table>
+
+<h3>顧客ID</h3>
+
+
+<tr>
+	<th><h4>氏名</h4></th>
+	<th><p><%= @customer.first_name %></p></th>
+	<th><p><%= @customer.last_name %></p></th>
+</tr>
+<tr>
+	<th><h4>フリガナ</h4></th>
+	<th><p><%= @customer.first_name_phonetic %></p></th>
+	<th><p><%= @customer.last_name_phonetic %></p></th>
+</tr>
+
+<tr>
+	<th><h4>郵便番号</h4></th>
+	<th><p><%= @customer.postcode %></p></th>
+</tr>
+
+<tr>
+	<th><h4>住所</h4></th>
+	<th><p><%= @customer.address %></p></th>
+</tr>
+
+<tr>
+	<th><h4>電話番号</h4></th>
+	<th><p><%= @customer.tel %></p></th>
+</tr>
+
+<tr>
+	<th><h4>メールアドレス</h4></th>
+	<th><p><%= @customer.email %></p></th>
+</tr>
+
+</table>
+
+<%= link_to "編集する",edit_admin_customer_path %>
+
+<h4>注文履歴一覧を見る</h4>
