@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get 'cart_items/confirm' =>"cart_items#confirm"
   get 'cart_items/destroy_all' =>"cart_items#destroy_all"
 
-  get 'orders/confirm' => "orders#confirm"
+  post 'orders/confirm' => "orders#confirm"
+  post 'orders' => "orders#create", as:"orders"
   get 'orders/complete' => "orders#complete"
 
   get "/" => "homes#top", as: "home"

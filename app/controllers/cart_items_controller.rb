@@ -22,7 +22,7 @@ class CartItemsController < ApplicationController
   def destroy
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
-    rdirect_to cart_items_confirm_path
+    redirect_to cart_items_confirm_path
   end
 
 
