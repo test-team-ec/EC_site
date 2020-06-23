@@ -23,9 +23,12 @@ Rails.application.routes.draw do
   post 'orders/confirm' => "orders#confirm"
   post 'orders' => "orders#create", as:"orders"
   get 'orders/complete' => "orders#complete"
-
+  root "homes#top"
   get "/" => "homes#top", as: "home"
   get "home_about" => "homes#about"
+  root "homes#top"
+
+  get "customers/delete" => "customers#delete", as:"customers_delete"
 
   resource :customers,only:[:show,:edit,:update, :destroy] do
     resources :shippings

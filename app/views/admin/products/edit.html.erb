@@ -1,6 +1,6 @@
 <h1>商品編集</h1>
-<%= form_with(model: product, method: :post, local: true) do |form| %>
-<%= attachment_image_tag(product, :product_image, :fill, 50, 50, fallback: "no-image-mini.jpg") %>
+<%= form_with(url: admin_product_path, model: @product, method: :patch, local: true) do |f| %>
+<%= attachment_image_tag(@product, :product_image, :fill, 50, 50,) %>
 <div class="field">
 	<%= f.label :image %>
 	<%= f.attachment_field :product_image, class: "product_image" %>
@@ -18,18 +18,18 @@
 
 <div class="field">
   <%= f.label :ジャンル %>
-  <%= f.collection_select product, :genre_id, Genre.all, :id, :name %>
+  <%= f.collection_select  :genre_id, Genre.all, :id, :name %>
 </div>
 
 <div class="field">
   <%= f.label :税込価格 %>
-  <%= f.text_field :price %>
-
+  <%= f.text_field :price %>円
 </div>
 
 <div class="field">
-  <%= f.label : %>
-  <%= f.collection_select product, :is_active, product :is_active, :is_active %>
+  <%= f.label :販売ステータス %>
+	<%= f.select :is_active, Product.is_actives.keys %>
+  <%# <%= f.select :is_active,[["販売中",true],["販売停止中",false]], include_blank: "選択して下さい" %> %>
 </div>
 <%= f.submit '保存' %>
 <% end %>

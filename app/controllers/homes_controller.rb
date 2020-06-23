@@ -1,7 +1,7 @@
 class HomesController < ApplicationController
   def top
+  	@genres = Genre.where(is_active: "有効")
   	@products = Product.all
-  	@genres = Genre.all
   end
 
   def about
