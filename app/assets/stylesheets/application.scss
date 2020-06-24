@@ -15,7 +15,7 @@
  */
  @import "bootstrap";
 
-// 全ページ共通
+// 全体のレイアウト
 *{
   margin:0;
   padding: 0;
@@ -30,10 +30,10 @@ html,　body {
   min-height: 100%;
   padding-bottom: 70px;
 }
-
+// ヘッダー・フッター
 header{
  	background-color: #F8F6EA;
- 	margin-bottom: 50px;
+ 	margin-bottom: 30px;
 }
 
 footer{
@@ -42,6 +42,7 @@ footer{
 	width: 100%;
 	position: absolute;
 	bottom: 0;
+	margin-top: 30px;
 }
 
 .footer-logo{
@@ -102,8 +103,29 @@ select {
     padding: 8px;
 }
 
+// text_field用
+.input-field{
+	padding: 5px;
+	width:300px;
+	margin-bottom:10px
+}
+
+// text_area用
+.input-area{
+	padding: 5px;
+	width:500px;
+	margin-bottom:10px
+}
+
+
 // グレー枠見出し
 .head-text{
 	background-color: #fffafa;
 	padding: 5px 10px;
+}
+
+//入力時左と下に空白
+.field{
+	margin-left: 50px;
+	margin-bottom:30px;
 }

@@ -1,4 +1,9 @@
 class Admin::OrdersController < ApplicationController
+	def top
+   	@order = Order.count
+	end
+
+
 	def index
 		@orders = Order.all.order(id:"DESC")
 		@order_details = OrderDetail.where(params[:order_id])

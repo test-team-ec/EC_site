@@ -6,9 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Product.create(genre_id: 1, name:"チョコケーキ", price: 200, introduction:"チョコケーキです",
-	product_image_id: "", is_active: "販売中")
-Product.create(genre_id: 1, name:"チーズケーキ", price: 200, introduction:"チーズケーキです",
-	product_image_id: "", is_active: "販売中")
-Product.create(genre_id: 2, name:"チョコクッキー", price: 100, introduction:"チョコクッキーです",
-	product_image_id: "", is_active: "販売中")
+Shipping.create(customer_id: 1, name:"test", postcode: 1234567, address:"大阪府")
