@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2020_06_23_012916) do
 
   create_table "administers", force: :cascade do |t|
