@@ -10,6 +10,7 @@
 			</h3>
 			<div class="products">
 				<% @products.each do |product| %>
+				<% if product.genre.is_active == "有効" %>
 					<div class="product-content"><!-- 4つごとに折り返し-->
 						<div class="product-block">
 							<%= link_to product_path(product) do %>
@@ -20,6 +21,7 @@
 							<p>￥<%= product.price %>円</p>
 						</div>
 					</div>
+				<% end %>
 				<% end %>
 			</div>
 		</div>

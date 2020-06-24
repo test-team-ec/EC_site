@@ -19,6 +19,5 @@ class Product < ApplicationRecord
 
 
 	enum is_active: { 販売停止中: false, 販売中: true }
-	#validates :is_active, inclusion: { in: [true, false] }
 
 end

@@ -15,16 +15,19 @@
 			<h3 style="padding: 30px 0;font-weight: bold">オススメ商品</h3>
 			<div class="products">
 			  <% @products.each do |product| %>
-					<div class="product-content"><!-- 4つごとに折り返し-->
-						<div class="product-block">
-							<%= link_to product_path(product) do %>
-								<%= attachment_image_tag product, :product_image, format:"jpg",
-									fallback:"top_page.jpg", class:"product-image" %>
-							<% end %>
-							<p><%= product.name %></p>
-							<p>￥<%= product.price %>円</p>
+				  <% if product.genre.is_active == "有効" %>
+						<div class="product-content"><!-- 4つごとに折り返し-->
+							<div class="product-block">
+								<%= link_to product_path(product) do %>
+									<%= attachment_image_tag product, :product_image,
+										format:"jpg",fallback:"top_page.jpg",
+										class:"product-image" %>
+								<% end %>
+								<p><%= product.name %></p>
+								<p>￥<%= product.price %>円</p>
+							</div>
 						</div>
-					</div>
+					<% end %>
 				<% end %>
 			</div>
 			<a href="/products", style="float: right; padding: 10px 0;">

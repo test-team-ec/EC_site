@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     post 'customers/sign_in' => 'customers/sessions#create', as: 'customer_session'
   end
 
-
   get 'cart_items/confirm' =>"cart_items#confirm"
   delete 'cart_items/destroy_all' =>"cart_items#destroy_all"
 

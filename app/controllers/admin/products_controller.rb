@@ -25,11 +25,13 @@ class Admin::ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
+
 		if @product.save
 		 redirect_to admin_products_path(@product)
 	 else
 		 render "edit"
 	 end
+
 	end
 
 	private
