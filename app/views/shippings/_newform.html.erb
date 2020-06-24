@@ -1,4 +1,3 @@
-
 <%= form_for(shipping, url:  customers_shippings_path) do |f| %>
  	<% if shipping.errors.any? %>
         <h3><%= shipping.errors.count %>eroor</h3>
@@ -7,7 +6,7 @@
             <li><%= message %></li>
              <% end %>
         </ul>
-    <% end %>
+  <% end %>
 
 	<div class="row">
       <div class="col-lg-4">
@@ -31,13 +30,11 @@
       <div class="col-lg-4">
         <p>宛名</p>
       </div>
-      <div class="col-lg-5">
-         <%= f.text_field :name, autocomplete: "off" %>
-         <p style="float: right">
-         <%= f.submit "登録する", class:"btn btn-success" %>
-     	</p>
+      <div class="col-lg-8">
+        <%= f.text_field :name, autocomplete: "off" %>
+          <span style="float: right">
+              <%= f.submit "登録する", class:"btn btn-success", style:"padding:5px 20px;" %>
+     	    </span>
       </div>
     </div>
-
-
-    <% end %>
+<% end %>
