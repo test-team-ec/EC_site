@@ -4,7 +4,9 @@ class CartItemsController < ApplicationController
   end
 
   def update
+     @cart_item = CartItem.find(params[:id])
      @cart_item.update(cart_item_params)
+     redirect_to cart_items_confirm_path
   end
 
   def create
@@ -15,8 +17,8 @@ class CartItemsController < ApplicationController
   end
 
   def destroy_all
-    @cart_item.destroy
-    redirect_to cart_items_confirm_path
+     CartItem.where(customer_id: current_customer.id).destroy_all #カートに紐づいてるユーザーのid取得
+     redirect_to cart_items_confirm_path
   end
 
   def destroy

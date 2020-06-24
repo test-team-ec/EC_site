@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
 
   get 'cart_items/confirm' =>"cart_items#confirm"
-  get 'cart_items/destroy_all' =>"cart_items#destroy_all"
+  delete 'cart_items/destroy_all' =>"cart_items#destroy_all"
 
   post 'orders/confirm' => "orders#confirm"
   post 'orders' => "orders#create", as:"orders"
@@ -27,8 +27,6 @@ Rails.application.routes.draw do
   root "homes#top"
   get "/" => "homes#top", as: "home"
   get "home_about" => "homes#about"
-  root "homes#top"
-
   get "customers/delete" => "customers#delete", as:"customers_delete"
 
   resource :customers,only:[:show,:edit,:update, :destroy] do
@@ -40,6 +38,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders, only:[:index, :show, :update]
+    get "/" => "orders#top"
   end
 
   namespace :admin do
