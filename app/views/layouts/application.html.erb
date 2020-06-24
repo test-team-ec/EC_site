@@ -9,13 +9,13 @@
   </head>
 
   <body>
-    <header class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <div class="wrapper">
+    <header class="navbar navbar-light">
       <div class="container">
-        <nav class="nav navbar-nav navbar-left">
-          <span>ロゴが入る</span>
-        </nav>
+          <%= link_to root_path, class:"navbar-brand" do %>
+          <% end %>
         <nav>
-          <ul class="nav" style="padding-top:50px;">
+          <ul class="nav">
 
            <% if customer_signed_in? %>
              <li class="nav-item-name">ようこそ、<%= current_customer.first_name %>さん！<li>
@@ -44,6 +44,12 @@
         </nav>
       </div>
     </header>
-    <%= yield %>
+      <%= yield %>
+    <footer>
+      <div class="container">
+        <div class="footer-logo"></div>
+      </div>
+    </footer>
+    </div>
   </body>
 </html>

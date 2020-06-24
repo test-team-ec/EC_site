@@ -1,14 +1,19 @@
-<div class="container", style="padding: 30px 0">
+<div class="container">
 	<div class="row">
 		<%= render "products/genre_sidebar", genres: @genres %>
 		<div class="col-lg-10">
 			<h3 style="padding-bottom: : 30px">
 				<%= @index_title %>一覧
 				<span style="font-size: 15px">
-					(全<%= @products.count %>件)
+				<% @sum = 0 %>
+					<% @products.each do |product| %>
+						<% if product.genre.is_active == "有効" %><% @sum += 1 %><% end %>
+					<% end %>
+					(全<%= @sum.to_i %>件)
 				</span>
 			</h3>
 			<div class="products">
+				<% @sum = 0 %>
 				<% @products.each do |product| %>
 				<% if product.genre.is_active == "有効" %>
 					<div class="product-content"><!-- 4つごとに折り返し-->
@@ -19,6 +24,7 @@
 							<% end %>
 							<p><%= product.name %></p>
 							<p>￥<%= product.price %>円</p>
+							<% @sum += 1 %>
 						</div>
 					</div>
 				<% end %>

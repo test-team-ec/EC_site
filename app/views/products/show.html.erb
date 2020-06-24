@@ -1,9 +1,9 @@
-<div class="container", style="padding: 30px 0">
+<div class="container">
 	<div class="row">
 		<%= render "products/genre_sidebar", genres: @genres %>
 		<div class="col-lg-5">
 			<%= attachment_image_tag @product, :product_image, format:"jpg",
-				fallback:"top_page.jpg", class:"product-image" %>
+				fallback:"top_page.jpg", class:"product-show" %>
 		</div>
 		<div class="col-lg-5">
 			<p style="font-size: 30px"><%= @product.name %></p>
