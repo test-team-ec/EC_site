@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="row" , style="padding: 30px 0">
+	<div class="row">
 		<%= render "products/genre_sidebar", genres: @genres %>
 		<div class="col-lg-10">
 			<div class="top-image">
@@ -14,7 +14,7 @@
 			</div>
 			<h3 style="padding: 30px 0;font-weight: bold">オススメ商品</h3>
 			<div class="products">
-			  <% @products.each do |product| %>
+			  <% @products.shuffle.first(4).each do |product| %>
 				  <% if product.genre.is_active == "有効" %>
 						<div class="product-content"><!-- 4つごとに折り返し-->
 							<div class="product-block">

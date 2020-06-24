@@ -1,43 +1,64 @@
-<h1>注文情報入力</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
 
-<%= form_with(url:orders_confirm_path, local: true) do |form| %>
-<h1>支払方法</h1>
- <label><%= form.radio_button :payment_method, :true %> クレジットカード</label>
- <label><%= form.radio_button :payment_method, :false %> 銀行振込</label>
-<br>
-    <!--  現住所 -->
-  <div class="field">
-   <label><%= form.radio_button  :addresses ,"1" %>ご自身の住所</label>
-          <%= @customer.address %>
+      <h3 style="margin-bottom: 30px">
+        <span class="head-text" >注文情報入力</span>
+      </h3>
 
-  </div>
-    <!-- セレクトボックス  -->
-  <div class="field">
-   <label> <%= form.radio_button :addresses , "2" %> 登録済住所から選択</label>
-           <%= form.collection_select(:select_address, @customer_address, :id, :view_shipping) %>
+      <span style="font-size: 20px;font-weight: bold">支払方法</span>
+      <div class="field">
+        <%= form_with(url:orders_confirm_path, local: true) do |form| %>
+         <label><%= form.radio_button :payment_method, :true %> クレジットカード</label><br>
+         <label><%= form.radio_button :payment_method, :false %> 銀行振込</label>
+      </div>
+      <!--  現住所 -->
+      <span style="font-size: 20px;font-weight: bold">お届け先</span>
+      <div class="field">
+        <label><%= form.radio_button  :addresses ,"1" %>ご自身の住所</label><br>
+        <div style="margin-left: 20px">
+          <%= @customer.postcode %><%= @customer.address %><br>
+          <%= @customer.first_name + @customer.last_name %><br>
+        </div>
+      </div>
 
+        <!-- セレクトボックス。配送先から選択  -->
+      <div class="field">
+        <label> <%= form.radio_button :addresses , "2" %>登録済住所から選択</label><br>
+        <div style="margin-left: 20px">
+          <%= form.collection_select(:select_address, @customer_address,:id, :view_shipping) %>
+        </div>
+      </div>
+        <!-- 配送先を新規作成 -->
+      <div class="field">
+          <lebel><%= form.radio_button  :addresses ,"3" %>新しいお届け先</lebel><br>
+          <div style="margin-left: 20px">
+            <table class="tavle">
+              <div>
+                <tr>
+                  <td style="padding-right: 15px;"><%= form.label :郵便番号 %>(ハイフンなし)</td>
+                  <td>
+                    <%= form.text_field :postcode , class:"input-field" %>
+                  </td>
+                </tr>
+              </div>
+              <tr>
+                <td><%= form.label :住所 %></td>
+                <td><%= form.text_area :address, class:"input-area" %></td>
+              </tr>
+              <tr>
+                <td><%= form.label :宛名 %></td>
+                <td><%= form.text_field :name, class:"input-field" %></td>
+              </tr>
+            </table>
+          </div>
+      </div>
+      <div style="text-align: center; margin-bottom: 20px;">
+        <%= form.submit '確認画面へ進む', class:"btn btn-primary", style:"padding:5px 10px;" %>
+      </div>
+      <% end %>
+    </div>
   </div>
-   <!-- 郵便番号フォーム -->
-  <div class="field">
-    <lebel>
-      <%= form.radio_button  :addresses ,"3" %>
-      新しいお届け先
-    </lebel>
-    <%= form.label :郵便番号 %>
-    <%= form.text_field :postcode %>
-  </div>
-  <!-- 住所フォーム -->
-  <div class="field">
-    <%= form.label :住所 %>
-    <%= form.text_area :address %>
-  </div>
-  <!-- 宛名フォーム -->
-  <div class="field">
-    <%= form.label :宛名 %>
-    <%= form.text_field :name %>
-  </div>
-<br>
-  <div class="actions">
-    <%= form.submit '確認画面' %>
-  </div>
-<% end %>
+</div>
+
+
