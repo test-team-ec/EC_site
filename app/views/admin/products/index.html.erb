@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row" >
 		<div class="col-xs-3">
-			<h3 style="background-color:#F5F5F5; margin-top:50px; padding:5px;">商品一覧</h3>
+			<h3 style="margin-bottom:30px;"><span class="head-text">商品一覧</span></h3>
 		</div>
 	    <div class="col-xs-3">
 	    	<a href="http://localhost:3000//admin/products/new">
@@ -22,11 +22,11 @@
     				</tr>
   				</thead>
   				<tbody>
-  					<% @genres.products.each do |product| %>
+  					<% @products.each do |product| %>
     				<tr>
       					<td><%= product.id %></td>
       					<td><%= link_to product.name,admin_product_path(product) %></td>
-      					<td><%= product.price %></td>
+      					<td><%= product.price %>円</td>
       					<td><%= product.genre.name %></td>
       					<td><%= product.is_active %></td>
     				</tr>

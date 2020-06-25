@@ -10,12 +10,11 @@ class ShippingsController < ApplicationController
   def create
       @shipping = Shipping.new(shipping_params)
       @shipping.customer_id = current_customer.id
-    
       if  @shipping.save
           redirect_to customers_shippings_path
       else
-          @shippings = Shipping.all
-          render 'index'
+        @shippings = Shipping.all
+        render 'index'
       end
   end
 
@@ -24,10 +23,14 @@ class ShippingsController < ApplicationController
   end
 
   def edit
-       @shipping = Shipping.find(params[:id])
+    @shipping = Shipping.find(params[:id])
   end
 
   def update
+    @shipping = Shipping.find(params[:id])
+    @shipping.customer_id = current_customer.id
+    @shipping.update(shipping_params)
+    redirect_to customers_shippings_path
   end
 
   def destroy
@@ -39,7 +42,7 @@ class ShippingsController < ApplicationController
   private
 
   def shipping_params
-    params.require(:shipping).permit(:postcode, :address, :name)
+    params.require(:shipping).permit(:customer_id, :postcode, :address, :name)
   end
 end
 

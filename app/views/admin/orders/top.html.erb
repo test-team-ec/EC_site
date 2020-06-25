@@ -1,3 +1,15 @@
-<h1>注文件数</h1>
+<div class="container">
+  <h3 style="margin-bottom: 50px;"><span class="head-text">管理者画面</span></h3>
+	<div class="row">
+		<div class="col-lg-12">
+			<span style="font-size: 30px">
+				本日の注文件数：
+				<%= link_to admin_orders_path do %>
+					<%= @order %>件
+				<% end %>
+			</span>
+		</div>
+	</div>
+</div>
 
-<%= link_to @order, admin_order_path(@order) %>件です
+

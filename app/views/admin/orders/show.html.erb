@@ -1,6 +1,6 @@
 <div class="container">
 	<h3>注文履歴詳細</h3>
-	<div class="row">
+	<div class="row" style="margin-bottom: 30px">
 		<div class="col-lg-3">
 			<p style="font-weight: bold">購入者</p>
 		</div>
@@ -16,7 +16,7 @@
 			<p style="font-weight: bold">配送先</p>
 		</div>
 		<div class="col-lg-9">
-			<p><%= @order.postcode %> <%= @order.address %></p>
+			<p><%= @order.postcode %><%= @order.address %></p>
 			<p><%= @order.name %></p>
 		</div>
 
@@ -77,7 +77,7 @@
 
 		<div class="col-lg-4">
 			<div class="row">
-				<div class="col-lg-6", style="font-weight: bold;font-size: 15px">
+				<div class="col-lg-6", style="font-weight: bold;font-size: 18px">
 					<p>商品合計</p>
 					<p>送料</p>
 					<p>請求金額合計</p>
@@ -85,7 +85,7 @@
 				<div class="col-lg-6">
 					<p><%= @sum.to_i %>円</p>
 					<p><%= @order.postage %>円</p>
-					<p><%= @order.total_products_cost + @order.postage %>円</p>
+					<p><%= @order.total_products_cost.to_i + @order.postage.to_i %>円</p>
 				</div>
 			</div>
 		</div>

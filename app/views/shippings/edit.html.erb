@@ -1,2 +1,33 @@
-<h1>Shippings#edit</h1>
-<p>Find me in app/views/shippings/edit.html.erb</p>
+<div class="container">
+	<%= form_for(@shipping, url: customers_shippings_path(@shipping), method: :putch) do |f| %>
+		<div class="row">
+	      <div class="col-lg-4">
+	        <p>郵便番号(ハイフンなし)</p>
+	      </div>
+	      <div class="col-lg-3">
+	         <%= f.text_field :postcode, autocomplete: "off"%>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p>住所</p>
+	      </div>
+	      <div class="col-lg-5">
+	         <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p>宛名</p>
+	      </div>
+	      <div class="col-lg-8">
+	        <%= f.text_field :name, autocomplete: "off" %>
+	          <span style="float: right">
+	              <%= f.submit "編集する", class:"btn btn-primary", style:"padding:5px 20px;" %>
+	     	    </span>
+	      </div>
+	    </div>
+	<% end %>
+</div>
