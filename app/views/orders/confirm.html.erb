@@ -1,48 +1,79 @@
-<h1>注文情報確認</h1>
-<br>
-<br>
-<table>
-	<tr>
-		<th>商品名</th>
-		<th>単価</th>
-		<th>数量</th>
-		<th>小計</th>
-		<th>送料</th>
-    <th>800</th>
-
-	</tr>
-  <div>
-    <h2>支払い方法</h2>
-		<% if @payment_method = true %>
-		 <p>クレジットカード</p>
-		<% else %>
-	   <p>銀行振込</p>
-    <% end %>
-		 <%= @order.address %>
-		 <%= @order.postcode %>
-		 <%= @order.name %>
-  </div>
-	<div>
-		<% @sum = 0 %>
-		<% @order_products.each do |order_product| %>
-		<td><%= attachment_image_tag order_product.product, :product_image, format: 'jpeg', size: "100x100" %></td>
-		<tr>
-			<td><%= order_product.product.name %></td>
-			<td><%= (order_product.product.price * 1.1).to_i %>円</td>
-			<td><%= order_product.count %></td>
-			<td><%= (order_product.product.price * 1.1).to_i * order_product.count.to_i %>円</td>
-				<% @sum += order_product.product.price * 1.1 * order_product.count.to_i %>
-		</tr>
-		<% end %>
+<div class="container">
+	<h3 style="margin-bottom: 20px;"><span class="head-text">注文情報確認</span></h3>
+	<div class="row">
+		<div class="col-lg-8">
+			<table class="table table-bordered">
+				<thead class="thead-light">
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+					</tr>
+				</thead>
+				<% @sum = 0 %>
+				<% @order_products.each do |order_product| %>
+				<tr>
+					<td>
+						<%= attachment_image_tag order_product.product, :product_image,
+							format: 'jpg', size: "80x50", fallback:"top_page.jpg" %>
+						<%= order_product.product.name %>
+					</td>
+					<td class="align-middle"><%= (order_product.product.price * 1.1).to_i %></td>
+					<td class="align-middle"><%= order_product.count %></td>
+					<td class="align-middle">
+						<%= (order_product.product.price * 1.1).to_i * order_product.count.to_i %>
+						<% @sum += order_product.product.price*1.1*order_product.count.to_i %>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+		<div class="col-lg-4">
+			<table class="table table-bordered">
+				<tr style="height: 50px;" >
+					<td class="table-active align-middle">送料</td>
+					<td class="align-middle">800</td>
+				</tr>
+				<tr style="height: 75px;">
+					<td class="table-active align-middle">商品合計</td>
+					<td class="align-middle"><%= @sum.to_i %></td>
+				<tr style="height: 75px;">
+					<td class="table-active align-middle">請求金額</td>
+					<td class="align-middle"><%= (@sum + 800).to_i %></td>
+				</tr>
+			</table>
+		</div>
 	</div>
 
-	<%= form_with(url:orders_path,  local: true) do |f| %>
-    <%= f.hidden_field :name, value: @order.name %>
-		<%= f.hidden_field :address, value: @order.address %>
-		<%= f.hidden_field :postcode, value: @order.postcode %>
-		<%= f.hidden_field :payment_method, value: @payment_method %>
-		<%= f.hidden_field :total_products_cost, value: @sum %>
-    <%= f.submit "購入確定" %>
-  <% end %>
-</table>
-<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<div style="margin-bottom: 20px">
+			    <span style="font-weight: bold;font-size: 18px;">支払い方法：</span>
+					<% if @payment_method = true %>
+						クレジットカード
+					<% else %>
+				   		銀行振込
+			   		<% end %>
+		   	</div>
+		   	<div style="margin-bottom: 20px">
+		   		<span style="font-weight: bold;font-size: 18px;">お届け先	  ：</span>
+		   			<%= @order.postcode %>
+					<%= @order.address %><br>
+					<span style="margin-left: 100px;"><%= @order.name %></span>
+		  	</div>
+
+			<%= form_with(url:orders_path,  local: true) do |f| %>
+			    <%= f.hidden_field :name, value: @order.name %>
+				<%= f.hidden_field :address, value: @order.address %>
+				<%= f.hidden_field :postcode, value: @order.postcode %>
+				<%= f.hidden_field :payment_method, value: @payment_method %>
+				<%= f.hidden_field :postage, value: 800 %>
+				<%= f.hidden_field :total_products_cost, value: @sum %>
+				<div style="text-align: center">
+			   		<%= f.submit "購入を確定する" ,class:"btn btn-success" %>
+			   	</div>
+		  	<% end %>
+		</div>
+	</div>
+</div>

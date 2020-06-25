@@ -15,6 +15,6 @@ class ProductsController < ApplicationController
   	@genres = Genre.where(is_active: "有効")
   	@product = Product.find(params[:id])
   	@cart_item = CartItem.new
-  	@tax_price = (@product.price * 1.08).to_i
+  	@tax_price = (@product.price * 1.1).to_i
   end
 end
