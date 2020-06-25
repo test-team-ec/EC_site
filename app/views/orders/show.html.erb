@@ -25,7 +25,11 @@
             <tr>
               <th class="table-active">支払方法</th>
               <td>
-                <%= @order.payment_method %>
+                <%if @order.payment_method == true %>
+									クレジットカード
+								<% else %>
+							   		銀行振込
+						   		<% end %>
               </td>
             </tr>
 

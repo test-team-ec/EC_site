@@ -32,6 +32,7 @@ class OrdersController < ApplicationController
       redirect_to new_customers_order_path
     end
 
+
   end
 
   def confirm
@@ -50,10 +51,15 @@ class OrdersController < ApplicationController
 
      else params[:addresses] == "3"
        @shipping = Shipping.new
-       @shipping = Shipping.find(params[:address])
-       @order.postcode = @shipping.postcode
-       @order.address = @shipping.address
-       @order.name = @shipping.name
+       @order.postcode = params[:postcode]
+       @order.address = params[:address]
+       @order.name = params[:name]
+
+       @shipping.customer_id = current_customer.id
+       @shipping.postcode = @order.postcode
+       @shipping.address = @order.address
+       @shipping.name = @order.name
+       @shipping.save
     end
   end
 
@@ -65,7 +71,7 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-     params.permit(:addrres, :postcode, :payment_method, :name, :customer_id,:total_products_cost, :order_status)
+     params.permit(:address, :postcode, :payment_method, :name, :customer_id,:total_products_cost, :order_status, :postage)
     end
 
 
