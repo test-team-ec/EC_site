@@ -1,10 +1,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-3">
-			<h3 style="background-color: #EEEEEE; margin-top:50px;"> 注文履歴一覧 </h3>
+			<h3 style="margin-bottom:30px;">
+				<span class="head-text">注文履歴一覧</span>
+			</h3>
 		</div>
 	</div>
-<table class="table">
+<table class="table table-bordered">
 	<thead class="thead-light">
 		<tr>
 			<th>注文日</th>
@@ -19,28 +21,25 @@
 	<tbody>
 		<% @orders.each do |order| %>
 		<tr>
-			<td><%= order.created_at.strftime('%Y/%m/%d')%>
+			<td class="align-middle">
+				<%= order.created_at.strftime('%Y/%m/%d')%>
 			</td>
-
-			<td>
+			<td class="align-middle">
 				<%= order.postcode %><br>
 				<%= order.address %><br>
 				<%= order.name %>
 			</td>
-
-			<td>
+			<td class="align-middle">
 				<% order.order_details.each do |order_detail| %>
-				<%= order_detail.product.name %><br>
+					<%= order_detail.product.name %><br>
 				<% end %>
 			</td>
-
-			<td>
-				<%= order.total_products_cost + order.postage %>円
+			<td class="align-middle">
+				<%= order.total_products_cost.to_i + order.postage.to_i %>円
 			</td>
-
-			<td><%= order.order_status %></td>
-
-			<td><%= link_to "表示する", customers_order_path(order), class:'btn btn-primary' %>
+			<td class="align-middle"><%= order.order_status %></td>
+			<td class="align-middle">
+				<%= link_to "表示する", customers_order_path(order), class:'btn btn-primary' %>
 			</td>
 		</tr>
 		<% end %>
