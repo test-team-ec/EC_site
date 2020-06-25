@@ -3,16 +3,13 @@ class Admin::OrdersController < ApplicationController
    	@order = Order.count
 	end
 
-
 	def index
 		@orders = Order.all.order(id:"DESC")
-		@order_details = OrderDetail.where(params[:order_id])
-		@total_count = @order_details.all.sum(:count)
 	end
 
 	def show
 		@order = Order.find(params[:id])
-		@order_details = OrderDetail.where(params[:order_id])
+		@order_details = OrderDetail.where(order_id: @order.id)
 	end
 
 	def update
