@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
 
   def update
   	@customer = current_customer
-  	@customer.update
+  	@customer.update(customer_params)
   	redirect_to customers_path
   end
 
@@ -23,5 +23,11 @@ class CustomersController < ApplicationController
    	@customer.update(is_active: "退会済")
   	@customer.destroy
   	redirect_to root_path
+  end
+
+  private
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :first_name_phonetic,
+      :first_name_phonetic, :tel, :postcode, :address, :email, :password, :is_active)
   end
 end
