@@ -15,10 +15,14 @@ Rails.application.routes.draw do
     delete 'customers/sign_out' => 'customers/sessions#destroy', as: 'destroy_customer_session'
     get 'customers/sign_in' => 'customers/sessions#new', as: 'new_customer_session'
     post 'customers/sign_in' => 'customers/sessions#create', as: 'customer_session'
+    get "customers/password/edit"  => "customers/passwords#edit", as:"edit_customer_password"
+    patch  "customers/password"  => "customers/passwords#update", as: "customer_password"
+    put    "customers/password" => "customers/passwords#update"
+    post   "customers/password" => "customers/passwords#create"
   end
 
   get 'cart_items/confirm' =>"cart_items#confirm"
-  delete 'cart_items/destroy_all' =>"cart_items#destroy_all"
+  delete 'cart_items/destroy_all' =>"cart_items#destroy_all", as: "cart_items_destroy_all"
 
   post 'orders/confirm' => "orders#confirm"
   post 'orders' => "orders#create", as:"orders"
