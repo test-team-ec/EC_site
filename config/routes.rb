@@ -7,7 +7,6 @@ Rails.application.routes.draw do
     delete 'administers/sign_out' => 'administers/sessions#destroy', as: 'destroy_administer_session'
   end
 
-
   devise_for :customers, skip: :all
   devise_scope :customer do
     get 'customers/sign_up' => 'customers/registrations#new', as: 'new_customer_registration'
@@ -29,7 +28,7 @@ Rails.application.routes.draw do
   get 'orders/complete' => "orders#complete"
   root "homes#top"
   get "/" => "homes#top", as: "home"
-  get "home_about" => "homes#about"
+  get "home_about" => "homes#about", as:"home_about"
   get "customers/delete" => "customers#delete", as:"customers_delete"
 
   resource :customers,only:[:show,:edit,:update, :destroy] do

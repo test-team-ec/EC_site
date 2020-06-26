@@ -1,9 +1,9 @@
 <div class="container">
+  <h4 style="margin-bottom: 30px;margin-top: 100px">
+    <span class="head-text">新規登録</span>
+  </h4>
   <div class="row">
-    <div class="col-lg-12", style="padding-bottom: 20px; padding-left: 20px">
-      <h3 style="margin-top: 30px">新規登録画面</h3>
-    </div>
-  </div>
+    <div class="col-lg-12">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -92,14 +92,22 @@
   　 <div class="row">
       <div class="col-lg-12", style="text-align:center;">
         <%= f.submit "新規登録" ,class:"btn btn-success btn-lg",
-          style:"padding:0 10%;margin-bottom:30px " %>
+          style:"padding:5px 30px;margin-bottom:30px " %>
       </div>
     </div>
   <% end %>
+</div>
+  </div>
 
-  <h3>既に登録済みの方</h3>
-  <p style="padding-left: 20px">
-    <a href="/customers/sign_in">こちら</a>
-    からログインしてください。
-  </p>
+  <h4 style="margin-top: 30px"><span class="head-text">既に登録済みの方</span></h4>
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <p style="padding-left: 20px">
+        <a href="/customers/sign_in", style="color: blue; border-bottom: 1px solid blue">
+          こちら</a>
+          からログインしてください。
+      </p>
+    </div>
+  </div>
+
 </div>
