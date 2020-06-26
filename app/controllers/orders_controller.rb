@@ -15,12 +15,12 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = Order.new(order_params) #新規でオーダーのパラメーター受けとるための
+    @order.customer_id = current_customer.id #オーダーとユーザーの紐付け
     if @order.save
        cart_items = current_customer.cart_items #カートアイテムを全取得
         cart_items.each do |cart_item|
-          order_detail = @order.order_details.new #履歴の空を作成
+          order_detail = @order.order_details.new #履歴の空を作成、オーダーと履歴紐付け
           order_detail.product_id = cart_item.product_id #カートの商品を取得
           order_detail.count = cart_item.count
           order_detail.price = cart_item.product.price
@@ -36,9 +36,9 @@ class OrdersController < ApplicationController
   end
 
   def confirm
-    @order_products = current_customer.cart_items.all
-    @order = Order.new
-    if params[:addresses] == "1"
+    @order_products = current_customer.cart_items.all  # オーダーされた商品とユーザーのカート内商品紐付け
+    @order = Order.new #ステータス受けとるための空を作成
+    if params[:addresses] == "1"  # from_withで定義している
       @order.address = current_customer.address
       @order.postcode =  current_customer.postcode
       @order.name =  current_customer.first_name
@@ -50,12 +50,13 @@ class OrdersController < ApplicationController
        @order.name = @shipping.name
 
      else params[:addresses] == "3"
-       @shipping = Shipping.new
+       @shipping = Shipping.new #住所新規登録するためのnew
+       #3を選ばれた際、送られたパラメーターを各カラムで受けとる
        @order.postcode = params[:postcode]
        @order.address = params[:address]
        @order.name = params[:name]
-
-       @shipping.customer_id = current_customer.id
+       # オーダーモデルに渡されたパラメーターをshippingモデルに渡す
+       @shipping.customer_id = current_customer.id #ユーザーの紐付け
        @shipping.postcode = @order.postcode
        @shipping.address = @order.address
        @shipping.name = @order.name
