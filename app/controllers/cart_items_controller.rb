@@ -4,14 +4,14 @@ class CartItemsController < ApplicationController
   end
 
   def update
-     @cart_item = CartItem.find(params[:id])
+     @cart_item = CartItem.find(params[:id])  #カート内の商品取得
      @cart_item.update(cart_item_params)
      redirect_to cart_items_confirm_path
   end
 
   def create
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
+    @cart_item = CartItem.new(cart_item_params)  #ステータス渡す為の空のカート作成
+    @cart_item.customer_id = current_customer.id #カートのidはユーザーと同じと定義
     @cart_item.save
     redirect_to cart_items_confirm_path
   end
@@ -29,18 +29,9 @@ class CartItemsController < ApplicationController
 
 
 
-  private
-	def current_cart_item
 
-		CartItem.find(session[:product_id])
 
-		rescue ActiveRecord::RecordNotFound
-			cart_item = cart_item.create
-			session[:product_id] = product.id
-			cart_item
-	end
-
-  def cart_item_params
+  def cart_item_params #カートに送られるステータス
   	params.require(:cart_item).permit(:customer_id, :product_id, :count)
   end
 end
