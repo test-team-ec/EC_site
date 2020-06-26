@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get 'orders/complete' => "orders#complete"
   root "homes#top"
   get "/" => "homes#top", as: "home"
-  get "home_about" => "homes#about"
+  get "home_about" => "homes#about", as:"home_about"
   get "customers/delete" => "customers#delete", as:"customers_delete"
 
   resource :customers,only:[:show,:edit,:update, :destroy] do
