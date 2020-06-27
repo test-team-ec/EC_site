@@ -5,6 +5,7 @@
 			<h3 style="padding-bottom: : 30px">
 				<%= @index_title %>一覧
 				<span style="font-size: 15px">
+				<!-- 2個目のeach文で表示される予定のデータ数をカウントして表示 -->
 				<% @sum = 0 %>
 					<% @products.each do |product| %>
 						<% if product.genre.is_active == "有効" %><% @sum += 1 %><% end %>

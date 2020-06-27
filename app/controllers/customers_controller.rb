@@ -24,6 +24,7 @@ class CustomersController < ApplicationController
 
   def destroy
   	@customer = current_customer
+    # 論理削除に合わせて、会員ステータスを退会済に変更させる
    	@customer.update(is_active: "退会済")
   	@customer.destroy
   	redirect_to root_path
