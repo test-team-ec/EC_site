@@ -17,6 +17,7 @@ class Admin::OrdersController < ApplicationController
 		@order_details = OrderDetail.where(params[:order_id])
 		@order.update(order_params)
 		if @order.order_status == "入金確認"
+			# 注文ステータスの変更で、それぞれの制作ステータスを変更
 			@order_details.each do |order_detail|
 				order_detail.update(work_status: "制作待ち")
 			end

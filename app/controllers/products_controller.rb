@@ -1,10 +1,13 @@
 class ProductsController < ApplicationController
   def index
+    # _genre_sidebarでparamsデータとして送られたものがあるかどうかのif文
     if params[:genre_id]
+      # あればそのデータに紐づいたジャンル名と商品のみを表示
       @genre = Genre.find(params[:genre_id])
       @products = Product.where(genre_id: @genre.id)
       @index_title = @genre.name
     else
+      # なければ全部表示
       @products = Product.all
       @index_title = "商品"
     end
