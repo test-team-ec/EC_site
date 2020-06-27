@@ -17,7 +17,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params) #新規でオーダーのパラメーター受けとるための
     @order.customer_id = current_customer.id #オーダーとユーザーの紐付け
-            binding.pry
     if @order.save
        cart_items = current_customer.cart_items #カートアイテムを全取得
         cart_items.each do |cart_item|
