@@ -14,8 +14,8 @@ Rails.application.routes.draw do
     delete 'customers/sign_out' => 'customers/sessions#destroy', as: 'destroy_customer_session'
     get 'customers/sign_in' => 'customers/sessions#new', as: 'new_customer_session'
     post 'customers/sign_in' => 'customers/sessions#create', as: 'customer_session'
-    get "customers/password/edit"  => "customers/passwords#edit", as:"edit_customer_password"
-    patch  "customers/password"  => "customers/passwords#update", as: "customer_password"
+    get "customers/password/edit"  => "customers/passwords#edit", as: 'edit_customer_password'
+    patch  "customers/password"  => "customers/passwords#update", as: 'customer_password'
     put    "customers/password" => "customers/passwords#update"
     post   "customers/password" => "customers/passwords#create"
   end
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "/" => "homes#top", as: "home"
   get "home_about" => "homes#about", as:"home_about"
   get "customers/delete" => "customers#delete", as:"customers_delete"
+  get "customers/edit_password" => "customers#edit_password", as:"customers_edit_password"
 
   resource :customers,only:[:show,:edit,:update, :destroy] do
     resources :shippings
