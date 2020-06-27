@@ -1,6 +1,6 @@
 class ShippingsController < ApplicationController
   def index
-      @shippings = Shipping.all
+      @shippings = Shipping.where(customer_id: current_customer.id)
       @shipping = Shipping.new
   end
 
