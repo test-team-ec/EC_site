@@ -5,7 +5,11 @@ class CustomersController < ApplicationController
   end
 
   def edit
-  	@customer = current_customer
+    @customer = current_customer
+  end
+
+  def edit_password
+    @customer = current_customer
   end
 
   def update

@@ -62,14 +62,13 @@
 					<%= @order.address %><br>
 					<span style="margin-left: 100px;"><%= @order.name %></span>
 		  	</div>
-
 			<%= form_with(url:orders_path,  local: true) do |f| %>
 			  <%= f.hidden_field :name, value: @order.name %>
 				<%= f.hidden_field :postage, value: @order.postage %>
 				<%= f.hidden_field :order_status, value: "入金待ち" %>
 				<%= f.hidden_field :address, value: @order.address %>
 				<%= f.hidden_field :postcode, value: @order.postcode %>
-				<%= f.hidden_field :payment_method, value: @payment_method %>
+				<%= f.hidden_field :payment_method, value: @order.payment_method %>
 				<%= f.hidden_field :postage, value: 800 %>
 				<%= f.hidden_field :total_products_cost, value: @sum %>
 				<div style="text-align: center">
