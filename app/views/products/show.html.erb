@@ -1,0 +1,33 @@
+<div class="container">
+	<div class="row">
+		<%= render "products/genre_sidebar", genres: @genres %>
+		<div class="col-lg-5">
+			<%= attachment_image_tag @product, :product_image, format:"jpg",
+				fallback:"top_page.jpg", class:"product-show" %>
+		</div>
+		<div class="col-lg-5">
+			<p style="font-size: 30px"><%= @product.name %></p>
+			<p><%= @product.introduction %></p>
+			<p style="font-size: 30px">
+				<%= @tax_price %>円<span style="font-size: 10px">(税込)</span>
+			</p>
+		</div>
+	</div>
+	<div class="form-row align-items-center", style="float: right">
+		<div class="col-auto">
+			<!-- cart_items#createにデータを渡す -->
+			<%= form_for(@cart_item, url: customers_cart_items_path) do |f| %>
+				<div class="field">
+					<% if customer_signed_in? %>
+					<!-- selectで1を選ぶとcountカラムに1が入る
+						　hidden_fieldで入力枠なしで商品idを入れる -->
+					<%= f.select :count, [["1","1"],["2","2"],["3","3"]],
+							include_blank: "個数選択" %>
+					<%= f.hidden_field :product_id, :value => @product.id %>
+					<%= f.submit "カートに入れる", class:"btn btn-primary" %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

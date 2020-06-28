@@ -1,0 +1,50 @@
+<div class="container">
+  <h3 style="margin-bottom: 20px;">
+  	<span class="head-text">
+  		<%= @customer.first_name + @customer.last_name %>さんの会員詳細
+  	</span>
+  </h3>
+	<div class="row">
+		<div class="col-lg-6">
+			<table class="table table-borderless">
+				<tr>
+					<td>顧客ID</td>
+					<td><%= @customer.id %>
+						<%= @customer.is_active %>
+					</td>
+				</tr>
+				<tr>
+					<td>氏名</td>
+					<td><%= @customer.first_name + @customer.last_name %></td>
+				</tr>
+				<tr>
+					<td>フリガナ</td>
+					<td><%= @customer.first_name_phonetic + @customer.last_name_phonetic %></td>
+				</tr>
+				<tr>
+					<td>郵便番号</td>
+					<td><%= @customer.postcode %></td>
+				</tr>
+				<tr>
+					<td>住所</td>
+					<td><%= @customer.address %></td>
+				</tr>
+				<tr>
+					<td>電話番号</td>
+					<td><%= @customer.tel %></td>
+				</tr>
+				<tr>
+					<td>メールアドレス</td>
+					<td><%= @customer.email %></td>
+				</tr>
+			</table>
+			<div>
+			<%= link_to "編集する",edit_admin_customer_path, class:"btn btn-primary",
+                    style:"padding: 5px 40px; margin-right: 30px;" %>
+            <%= link_to "注文履歴一覧を見る", admin_orders_path, class:"btn btn-primary",
+                    style:"padding: 5px 40px;" %>
+            </div>
+		</div>
+		<div class="col-lg-6"></div>
+	</div>
+</div>

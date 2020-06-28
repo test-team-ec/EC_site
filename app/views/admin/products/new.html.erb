@@ -1,0 +1,75 @@
+<div class="container">
+  <h3 style="margin-bottom:30px;"><span class="head-text">商品新規登録</span></h3>
+  <%= form_for(@product, url:admin_products_path) do |f| %>
+
+    <% if @product.errors.any? %>
+      <h3><%= @product.errors.count %>eroor</h3>
+        <ul>
+          <% @product.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+
+  	<div class="row">
+  		<div class="col-lg-3">
+        <p>画像のプレビュー(仮)</p>
+            <div style="margin-bottom:20px;">
+              <%= f.attachment_field :product_image, class: "product_image" %>
+            </div>
+      </div>
+      <div class="col-lg-7 offset-lg-1">
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-3">
+              <p>商品名　　</p>
+            </div>
+            <div class="col-lg-9">
+              <%= f.text_field :name, autocomplete: "off", style:"width:300px" %>円
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-lg-3">
+              <p>商品説明　</p>
+            </div>
+           <div class="col-lg-9" >
+             <%= f.text_area :introduction, autocomplete: "off",rows:"5", style:"width:300px" %>
+           </div>
+          </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-lg-3">
+                <p>ジャンル　</p>
+              </div>
+              <div class="col-lg-9">
+                  <%= f.collection_select :genre_id, Genre.all,
+                     :id, :name, include_blank: "-- 選択してください --" ,style:"width:300px:" %>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-lg-3">
+                <p>税込価格　</p>
+              </div>
+              <div class="col-lg-9">
+                <%= f.text_field :price, autocomplete: "off" ,style:"width:300px" %>
+              </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-lg-3">
+                <p>販売<br>ステータス</p>
+              </div>
+              <div class="col-lg-9">
+                  <%= f.select :is_active, Product.is_actives.keys,
+                    include_blank: "-- 選択してください --" %>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div style="float: right" >
+      <%= f.submit "新規登録", class:"btn btn-primary", style:"padding: 10px 30px;" %>
+    </div>
+
+  <% end %>
+</div>

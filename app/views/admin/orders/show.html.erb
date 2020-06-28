@@ -1,0 +1,93 @@
+<div class="container">
+	<h3>注文履歴詳細</h3>
+	<div class="row" style="margin-bottom: 30px">
+		<div class="col-lg-3">
+			<p style="font-weight: bold">購入者</p>
+		</div>
+		<div class="col-lg-9">
+			<p>
+				<%= link_to admin_customer_path(@order.customer) do %>
+					<%= @order.customer.first_name %><%= @order.customer.last_name %>
+				<% end %>
+			</p>
+		</div>
+
+		<div class="col-lg-3">
+			<p style="font-weight: bold">配送先</p>
+		</div>
+		<div class="col-lg-9">
+			<p><%= @order.postcode %><%= @order.address %></p>
+			<p><%= @order.name %></p>
+		</div>
+
+		<div class="col-lg-3">
+			<p style="font-weight: bold">支払方法</p>
+		</div>
+		<div class="col-lg-9">
+			<%= @order.payment_method %>
+		</div>
+
+		<div class="col-lg-3">
+			<p style="font-weight: bold">注文ステータス</p>
+		</div>
+		<div class="col-lg-9">
+			<p>
+				<%= form_for(@order,url: admin_order_path(@order),
+					html: {method: "patch"}) do |f| %>
+					<%= f.select :order_status, Order.order_statuses.keys %>
+					<%= f.submit "更新", class:"btn btn-primary btn-sm" %>
+				<% end %>
+			</p>
+		</div>
+	</div>
+
+	<div class="row align-items-end">
+		<div class="col-lg-8">
+			<table class="table">
+				<thead class="thead-light">
+					<tr>
+						<th>商品名</th>
+						<th>単価(税込)</th>
+						<th>数量</th>
+						<th>小計</th>
+						<th>制作ステータス</th>
+					</tr>
+				</thead>
+				<% @sum = 0 %>
+				<% @order_details.each do |order_detail| %>
+					<tr>
+						<td><%= order_detail.product.name %></td>
+						<td><%= (order_detail.product.price * 1.1).to_i %></td>
+						<td><%= order_detail.count %></td>
+						<td><%= (order_detail.product.price * 1.1 * order_detail.count).to_i %>
+							<% @sum += (order_detail.product.price * 1.1 * order_detail.count) %>
+						</td>
+						<td>
+							<%= form_for(order_detail ,
+								url: admin_order_detail_path(order_detail),
+								html: {method: "patch"}) do |f| %>
+								<%= f.select :work_status, OrderDetail.work_statuses.keys %>
+							<%= f.submit "更新", class:"btn btn-primary btn-sm" %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+
+		<div class="col-lg-4">
+			<div class="row">
+				<div class="col-lg-6", style="font-weight: bold;font-size: 18px">
+					<p>商品合計</p>
+					<p>送料</p>
+					<p>請求金額合計</p>
+				</div>
+				<div class="col-lg-6">
+					<p><%= @sum.to_i %>円</p>
+					<p><%= @order.postage %>円</p>
+					<p><%= @order.total_products_cost.to_i + @order.postage.to_i %>円</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

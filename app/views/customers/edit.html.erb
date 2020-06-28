@@ -1,0 +1,84 @@
+<div class="container">
+  <h3 style="margin-bottom: 20px;"><span class="head-text">登録情報編集</span></h3>
+  <div class="row">
+  	<div class="col-lg-12">
+	  	<%= form_for(@customer, url: customers_path) do|f| %>
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p style="float: right">(性)</p>
+	        <p>名前</p>
+	      </div>
+	      <div class="col-lg-3">
+	         <%= f.text_field :first_name, autofocus: true, autocomplete: "off" %>
+	         <p style="float:right">(名)</p>
+	      </div>
+	      <div class="log-lg-3">
+	        <%= f.text_field :last_name, autocomplete: "off" %>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p style="float: right">(セイ)</p>
+	        <p>フリガナ</p>
+	      </div>
+	      <div class="col-lg-3">
+	         <%= f.text_field :first_name_phonetic, autocomplete: "off" %>
+	         <p style="float:right">(メイ)</p>
+	      </div>
+	      <div class="log-lg-3">
+	         <%= f.text_field :last_name_phonetic, autocomplete: "off" %>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p>メールアドレス</p>
+	      </div>
+	      <div class="col-lg-3">
+	         <%= f.email_field :email, autocomplete: "off" %>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p>郵便番号(ハイフンなし)</p>
+	      </div>
+	      <div class="col-lg-3">
+	         <%= f.text_field :postcode, autocomplete: "off"%>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p>住所</p>
+	      </div>
+	      <div class="col-lg-5">
+	         <%= f.text_field :address, autocomplete: "off" ,style:"width:100%" %>
+	      </div>
+	    </div>
+
+	    <div class="row">
+	      <div class="col-lg-4">
+	        <p>電話番号(ハイフンなし)</p>
+	      </div>
+	      <div class="col-lg-3">
+	         <%= f.text_field :tel, autocomplete: "off"%>
+	      </div>
+	    </div>
+     </div>
+  </div>
+
+  　 <div class="row">
+      <div class="col-lg-9", style="text-align:center;">
+        <%= f.submit "編集内容を保存する" ,class:"btn btn-primary",
+          style:"padding:　10px 30px;" %>
+      </div>
+      <div class="col-lg-3">
+      	<%= link_to customers_delete_path do %>
+      		<span class="btn btn-danger" >退会する</span>
+      	<% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
