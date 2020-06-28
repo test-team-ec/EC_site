@@ -36,8 +36,10 @@ class OrdersController < ApplicationController
   end
 
   def confirm
+
     @order_products = current_customer.cart_items.all  # オーダーされた商品とユーザーのカート内商品紐付け
     @order = Order.new #ステータス受けとるための空を作成
+    @order.payment_method = params[:payment_method]
     if params[:addresses] == "1"  # from_withで定義している
       @order.address = current_customer.address
       @order.postcode =  current_customer.postcode

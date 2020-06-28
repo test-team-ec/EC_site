@@ -5,18 +5,6 @@ class Product < ApplicationRecord
   attachment :product_image
 
   belongs_to :genre
-  def add_product(product_id)
-
-    current_cart_item = cart_items.find_by_product_id(product_id)
-
-    if current_item
-      current_cart_item.count += 1
-    else
-      current_cart_item = cart_items.build(product_id: product_id)
-    end
-    current_cart_item
-  end
-
 
 	enum is_active: { 販売停止中: false, 販売中: true }
 

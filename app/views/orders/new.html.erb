@@ -9,8 +9,8 @@
       <span style="font-size: 20px;font-weight: bold">支払方法</span>
       <div class="field">
         <%= form_with(url:orders_confirm_path, local: true) do |form| %>
-         <label><%= form.radio_button :payment_method, :true %> クレジットカード</label><br>
-         <label><%= form.radio_button :payment_method, :false %> 銀行振込</label>
+         <label><%= form.radio_button :payment_method, "クレジットカード" %>クレジットカード</label><br>
+         <label><%= form.radio_button :payment_method, "銀行振込" %> 銀行振込</label>
       </div>
       <!--  現住所 -->
       <span style="font-size: 20px;font-weight: bold">お届け先</span>

@@ -12,8 +12,7 @@ class Admin::OrderDetailsController < ApplicationController
 		if @order_detail.work_status == "製作中"
 			# order_detailのどれかが制作中になれば、@orderの注文ステータスを制作中にする
 			@order.update(order_status: "製作中")
-		end
-		if @all_order_details.count == @complete_order_details.count
+		else @all_order_details.count == @complete_order_details.count
 			# @orderに紐づくorder_detailの数と、その中の制作ステータスが制作完了になっている
 			# order_detailの数が一致すれば注文ステータスを発送準備中にする
 			@order.update(order_status: "発送準備中")
