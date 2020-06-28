@@ -14,6 +14,9 @@ class Admin::CustomersController < ApplicationController
 	def update
 		@customer = Customer.with_deleted.find(params[:id])
 		@customer.update(customer_params)
+		if @customer.is_active == "退会済"
+			@customer.destroy
+		end
 		redirect_to admin_customers_path(@customer)
 	end
 

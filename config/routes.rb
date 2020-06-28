@@ -41,7 +41,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :orders, only:[:index, :show, :update]
-    get "/" => "orders#top"
+    get "/" => "orders#top", as: "top"
   end
 
   namespace :admin do

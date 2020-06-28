@@ -42,10 +42,10 @@
 				<tr>
 					<td>会員ステータス</td>
 					<td>
-						<%= f.radio_button :is_active, :effectiveness %>
-						<%= f.label :is_active,"有効", {value: :effectiveness, style: "dispaly: inline-block;"} %>
-						<%= f.radio_button :is_active, :Withdrawn %>
-						<%= f.label :is_active, "退会済み", {value: :Withdrawn, style: "display: inline-block;"} %>
+						<%= f.radio_button :is_active, "有効" %>
+						<%= f.label :is_active,"有効", {style: "dispaly: inline-block;"} %>
+						<%= f.radio_button :is_active, "退会済" %>
+						<%= f.label :is_active, "退会済み", {style: "display: inline-block;"} %>
 					</td>
 				</tr>
 			</table>
